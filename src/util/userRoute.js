@@ -1,8 +1,7 @@
 const express = require('express');
 const User = require('../model/user');
 const router = new express.Router();
-const sgMail = require('@sendgrid/mail');
-const sendGridAPI = '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';
+const sendMail = require('./emailService');
 
 
 const createUser = async (req, res) =>{
@@ -51,22 +50,6 @@ const verifyEmail = async (req, res) => {
     }
 }
 
-const sendMail = (user) =>{
-    const id = user._id.toString();
-    const email = user.email;
-    const link = 'http://localhost:3000/api/v1/user/account?id=' + id + '&email=' + email;
-
-    sgMail.setApiKey(sendGridAPI);
-    sgMail.send({
-        to: email,
-        from: 'benjamindavid023@gmail.com',
-        subject: 'Check',
-        text: 'Please click the following link to register your email: ' + link
-    });
-
-    console.log('Link sent to this Email ' + email);
-    console.log('Link :' +link);
-}
 
 router.post('/api/v1/user', createUser);
 router.get('/api/v1/user/account', verifyEmail);
