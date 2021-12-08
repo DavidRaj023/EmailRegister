@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../model/user');
 const router = new express.Router();
 const sgMail = require('@sendgrid/mail');
-const sendGridAPI = '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';
+
 
 
 const createUser = async (req, res) =>{
