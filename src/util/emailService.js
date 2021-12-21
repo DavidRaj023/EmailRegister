@@ -2,6 +2,8 @@ require('dotenv').config();
 const sgMail = require('@sendgrid/mail');
 const sendGridAPI = process.env.SEND_GRID;
 
+
+//SMTP
 const sendMail = async(user) =>{
     try {
         const id = user._id.toString();
